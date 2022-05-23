@@ -44,12 +44,14 @@ import java.util.HashMap;
 class LongestSubstringWithoutRepeatingCharacters{
     public static void main(String[] args) {
         Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
-        
+        solution.lengthOfLongestSubstring("abcabcbb");
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int lengthOfLongestSubstring(String s) {
+        //依然使用滑动窗口算法 只是更为简单
+        //记录窗口数据
         HashMap<Character, Integer> window = new HashMap<>();
 
         int left = 0,right = 0;
@@ -60,7 +62,7 @@ class Solution {
             //进行窗口内数据的更新
             window.put(c,window.getOrDefault(c,0)+1);
             //判断左侧窗口是否要收缩
-            while (window.get(c) > 1){
+            while (window.get(c) > 1){ //如果大于1 则证明有重复字符 （所以不符合条件了 需要进行缩小窗口了）
                 char d = s.charAt(left);
                 left++;
                 //进行窗口内数据的一系列更新
